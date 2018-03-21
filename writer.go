@@ -70,6 +70,10 @@ type Writer interface {
 	 */
 	Activate()
 	/**
+	 * IsActivated()
+	 */
+	IsActivated() bool
+	/**
 	 * WriteStdout
 	 * write a frame with stdout content, returns ErrNotActivated if Activate() is not invoked
 	 */
@@ -204,6 +208,10 @@ func (w *writer) FrameWriter() FrameWriter {
 func (w *writer) Activate() {
 	w.active = true
 	w.t0 = time.Now()
+}
+
+func (w *writer) IsActivated() bool {
+	return w.active
 }
 
 func (w *writer) WriteStdout(p []byte) error {
